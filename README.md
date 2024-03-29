@@ -18,13 +18,3 @@ Designed and deployed a globally distributed, serverless application providing a
 7. **Global Load Balancing**: Utilized Cloudflare for DNS management, achieving efficient global traffic routing.
 8. **Security**: Enforced best security practices including network security, data encryption, and OWASP Top 10 application security measures.
 9. **CI/CD Pipeline**: Established a multi-cloud CI/CD pipeline with GitHub Actions, enhancing deployment efficiency and reliability.
-
-### 🚧 Deployment Steps Completed
-
-1. **Architected the System**: Detailed architecture diagrams were created, outlining the integration and flow across AWS, Azure, and Google Cloud.
-2. **Cloud and Terraform Setup**: Configured necessary accounts and Terraform providers, setting a solid foundation for deployment.
-3. **Application Development**: Developed the serverless application with a focus on image processing, employing Docker for local testing iterations.
-4. **Terraform Configuration**: Crafted Terraform modules for each infrastructure component, showcasing sophisticated multi-provider management.
-5. **System Deployment**: Executed Terraform to deploy resources across the clouds, followed by comprehensive end-to-end testing to ensure functionality and performance.
-6. **Monitoring and Security**: Implemented centralized logging and monitoring, along with robust security controls, ensuring the system's integrity and reliability.
-7. **CI/CD Pipeline Integration**: Configured a seamless CI/CD workflow, facilitating automated, multi-cloud deployments.
