@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-todo-api
+  labels:
+    app: flask-todo-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-todo-api
+  template:
+    metadata:
+      labels:
+        app: flask-todo-api
+    spec:
+      containers:
+      - name: flask-todo-api-container
+        image: gcr.io/todo-list-project/todo-api:v1.0
+        ports:
+        - containerPort: 5000

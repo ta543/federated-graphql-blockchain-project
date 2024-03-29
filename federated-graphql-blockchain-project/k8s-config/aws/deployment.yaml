@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-webapp
+  labels:
+    app: nodejs-webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-webapp
+  template:
+    metadata:
+      labels:
+        app: nodejs-webapp
+    spec:
+      containers:
+      - name: nodejs-webapp-container
+        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/nodejs-webapp:latest
+        ports:
+        - containerPort: 8080

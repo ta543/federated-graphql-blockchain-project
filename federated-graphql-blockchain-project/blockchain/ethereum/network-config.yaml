@@ -1,0 +1,5 @@
+ethereumNetwork:
+  networkName: "rinkeby"
+  providerURL: "https://rinkeby.infura.io/v3/${INFURA_PROJECT_ID}"
+  defaultAccount: "${ETH_DEFAULT_ACCOUNT}"
+  privateKey: "${ETH_PRIVATE_KEY}"

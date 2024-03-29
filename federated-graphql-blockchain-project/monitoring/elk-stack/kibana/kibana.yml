@@ -1,0 +1,4 @@
+server.port: 5601
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+kibana.index: ".kibana"
+i18n.locale: "en"

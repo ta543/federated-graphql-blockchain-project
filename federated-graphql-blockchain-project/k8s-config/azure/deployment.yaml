@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherforecast-api
+  labels:
+    app: weatherforecast-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: weatherforecast-api
+  template:
+    metadata:
+      labels:
+        app: weatherforecast-api
+    spec:
+      containers:
+      - name: weatherforecast-api-container
+        image: weatherforecastacr.azurecr.io/weatherforecastapi:v1 # Replace with your actual ACR image URL
+        ports:
+        - containerPort: 80

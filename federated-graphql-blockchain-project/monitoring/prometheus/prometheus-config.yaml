@@ -1,0 +1,46 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    labels:
+      environment: 'production'
+      role: 'node'
+
+  - job_name: 'app-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['app-service:8080']
+    labels:
+      environment: 'production'
+      app: 'app-service'
+
+  - job_name: 'database-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['database-service:9090']
+    labels:
+      environment: 'production'
+      app: 'database-service'
+
+  - job_name: 'web-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['web-service:9091']
+    labels:
+      environment: 'production'
+      app: 'web-service'
+
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+          - http://example.com
+          - https://example.net
+    labels:
+      environment: 'production'
+      role: 'blackbox'

@@ -1,0 +1,87 @@
+name: "PharmaSupplyChainNetwork"
+description: "Hyperledger Fabric network setup for a pharmaceutical supply chain management system"
+version: "2.2"
+
+# Organizations participating in the network
+organizations:
+  PharmaCorp:
+    mspid: PharmaCorpMSP
+    peers:
+      - peer0.pharmacorp.supplychain.net
+    certificateAuthorities:
+      - ca.pharmacorp.supplychain.net
+    adminPrivateKey:
+      path: "/opt/hyperledger/fabric/crypto-config/pharmacorp/users/Admin@pharmacorp.supplychain.net/msp/keystore/admin_sk"
+    signedCert:
+      path: "/opt/hyperledger/fabric/crypto-config/pharmacorp/users/Admin@pharmacorp.supplychain.net/msp/signcerts/Admin@pharmacorp.supplychain.net-cert.pem"
+
+  DistributorA:
+    mspid: DistributorAMSP
+    peers:
+      - peer0.distributora.supplychain.net
+    certificateAuthorities:
+      - ca.distributora.supplychain.net
+    adminPrivateKey:
+      path: "/opt/hyperledger/fabric/crypto-config/distributora/users/Admin@distributora.supplychain.net/msp/keystore/admin_sk"
+    signedCert:
+      path: "/opt/hyperledger/fabric/crypto-config/distributora/users/Admin@distributora.supplychain.net/msp/signcerts/Admin@distributora.supplychain.net-cert.pem"
+
+# Peer nodes in the network
+peers:
+  peer0.pharmacorp.supplychain.net:
+    url: grpcs://peer0.pharmacorp.supplychain.net:7051
+    tlsCACerts:
+      path: "/opt/hyperledger/fabric/crypto-config/pharmacorp/peers/peer0.pharmacorp.supplychain.net/tls/ca.crt"
+    grpcOptions:
+      ssl-target-name-override: peer0.pharmacorp.supplychain.net
+
+  peer0.distributora.supplychain.net:
+    url: grpcs://peer0.distributora.supplychain.net:7051
+    tlsCACerts:
+      path: "/opt/hyperledger/fabric/crypto-config/distributora/peers/peer0.distributora.supplychain.net/tls/ca.crt"
+    grpcOptions:
+      ssl-target-name-override: peer0.distributora.supplychain.net
+
+# Orderer nodes in the network
+orderers:
+  orderer.supplychain.net:
+    url: grpcs://orderer.supplychain.net:7050
+    tlsCACerts:
+      path: "/opt/hyperledger/fabric/crypto-config/ordererOrganizations/supplychain.net/orderers/orderer.supplychain.net/tls/ca.crt"
+
+# Certificate Authorities
+certificateAuthorities:
+  ca.pharmacorp.supplychain.net:
+    url: https://ca.pharmacorp.supplychain.net:7054
+    httpOptions:
+      verify: false
+    registrar:
+      - enrollId: admin
+        enrollSecret: pharmadminpw
+    caName: ca.pharmacorp.supplychain.net
+
+  ca.distributora.supplychain.net:
+    url: https://ca.distributora.supplychain.net:7054
+    httpOptions:
+      verify: false
+    registrar:
+      - enrollId: admin
+        enrollSecret: distadminpw
+    caName: ca.distributora.supplychain.net
+
+# Channels that the peers are part of
+channels:
+  supplychainchannel:
+    orderers:
+      - orderer.supplychain.net
+    peers:
+      peer0.pharmacorp.supplychain.net:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.distributora.supplychain.net:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
